@@ -1,0 +1,690 @@
+@use "./customComponents.scss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sen:wght@400..800&display=swap");
+
+$background-img: url("/images/aurora-bg.png");
+
+html {
+  scroll-behavior: smooth;
+  body {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    box-sizing: border-box;
+    font-size: 1em;
+  }
+}
+
+//define night mode colors
+:root {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+}
+
+.header {
+  background-image: $background-img;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: space-evenly;
+  z-index: 1000;
+  top: 0;
+  width: 16vw;
+  height: 100vh;
+  padding: 1em;
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .logo-icon {
+      filter: invert(1);
+      width: 2em;
+    }
+    .logo-text {
+      font-size: 2em;
+      display: inline;
+      font-weight: 200;
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .about-patient {
+    padding: 10%;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    .user {
+      display: flex;
+      margin: auto;
+      justify-content: center;
+      align-items: center;
+    }
+    p {
+      font-size: 1.2em;
+    }
+  }
+  .navigation {
+    @extend .glassmorph;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // padding: 1em;
+    color: white;
+    width: 90%;
+    font-size: 1.2em;
+
+    .nav-links {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      height: 100%;
+      padding: 0;
+      .nav-link {
+        color: white;
+        list-style: none;
+        a {
+          color: white;
+          text-decoration: none;
+          transition: all 0.5s ease;
+        }
+        a:hover {
+          color: #22d6ff;
+        }
+      }
+    }
+  }
+}
+
+.scan-barcode {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: $background-img;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .login-card {
+    min-height: 80%;
+    min-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .barcode-icon {
+      font-size: 10em;
+    }
+
+    .scan-form {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .scan-action-btns {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+
+      .new-profile-btn {
+        color: white !important;
+        text-decoration: none;
+      }
+      button {
+        color: white !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
+
+// New Patient Form //
+.new-patient-form-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: $background-img;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  // .basic-info-form{
+
+  // }
+
+  .action-step-btns {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+}
+
+// HOME
+.home {
+  // ABOUT  //
+  margin-left: 16vw;
+  padding: 0 5vw;
+  background-image: $background-img;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  #about {
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 5vh;
+    min-height: 100vh;
+    display: grid;
+    .about-main {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1em;
+
+      .general-info {
+        padding: 1em;
+      }
+    }
+
+    .todo-list-main {
+      color: rgb(255, 255, 255);
+      p {
+        font-size: 1.5em;
+      }
+
+      .add-todo-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-grow: 1;
+        input {
+          padding: 0.5em;
+          width: 80%;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        .add-btn {
+          padding: 0.5em;
+          background-color: #ffffff;
+          color: rgb(0, 0, 0);
+          border-radius: 5px;
+          border: none;
+        }
+      }
+      .todos-list {
+        max-height: 100vh;
+        overflow-y: auto;
+        ul {
+          margin-top: 10%;
+          margin-left: 0;
+          padding: 0;
+          .todo-item {
+            @extend .glassmorph;
+            list-style: none;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5em;
+            border-radius: 5px;
+            margin-top: 0.5em;
+            transition: all 0.5s ease;
+            p {
+              padding: 0;
+              height: 100%;
+              margin: 0;
+              padding-left: 0.5em;
+              border-left: 3px solid #22d6ff90;
+              border-radius: 2px;
+              transition: all 0.5s ease;
+
+              font-size: 100%;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .todo-completed {
+    p {
+      text-decoration: line-through;
+      color: grey;
+    }
+  }
+
+  // Appointments ///
+  #appointments {
+    .appointments-wrapper {
+      padding-right: 20px;
+      max-height: 150vh;
+      overflow-y: auto;
+      .appointment-card {
+        .wrapper {
+          border-left: 5px solid #5be1ff7f;
+          padding-left: 10px;
+          border-radius: 5px;
+
+          .date-time {
+            display: flex;
+            align-items: center;
+            p {
+              margin: 0;
+              margin-left: 10px;
+              font-weight: 600;
+            }
+          }
+
+          .vitals {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1em;
+            .vital {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .heart-icon {
+                color: rgb(255, 136, 136);
+              }
+              .thermometer-icon {
+                color: rgb(255, 255, 255);
+              }
+              p {
+                margin-left: 10%;
+              }
+            }
+          }
+
+          .prescriptions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1em;
+            .prescription {
+              background-color: rgba(211, 255, 145, 0.479);
+              color: rgb(40, 109, 0);
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .prescription-details {
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Specimens //
+  #specimens {
+    min-height: 100vh;
+
+    .new-specimen-form-wrapper {
+      height: 50%;
+      .toggle-form-btn {
+        margin: 1em 0;
+        padding: 1em;
+        background-color: #333;
+        color: white;
+        border-radius: 5px;
+      }
+      .new-specimen-form {
+        .form-inputs {
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            label {
+              font-size: 1.5em;
+            }
+            input {
+              margin-top: 2em;
+            }
+          }
+        }
+
+        .add-btn {
+          margin-top: 2em;
+          padding: 1em;
+          background-color: #333;
+          color: white;
+          border-radius: 5px;
+        }
+      }
+    }
+    .specimens {
+      height: 100%;
+      .specimen-card {
+        display: flex;
+        justify-content: space-evenly;
+        border-radius: 10px;
+        padding: 15px;
+        .specimen-icon {
+          height: 100%;
+          // width: 30%;
+          color: white;
+          background-color: rgb(255, 175, 175);
+          text-align: center;
+          display: flex;
+          font-size: 1.5em;
+        }
+        .details {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          margin-left: 10px;
+        }
+      }
+      .blood-type {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .blood-type-icon {
+          font-size: 2em;
+        }
+      }
+    }
+  }
+}
+
+// chatbot
+
+/* Glassmorphism Chatbot Styles */
+
+.expand-window {
+  height: 75% !important;
+  width: 60% !important;
+}
+.chat-toggle {
+  @extend .glassmorph;
+  position: fixed;
+  z-index: 1000;
+
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  img {
+    width: 2em;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.chat-window {
+  position: fixed;
+  z-index: 1000;
+  bottom: 90px;
+  right: 20px;
+  height: 50%;
+  width: 40%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.chat-header {
+  background-color: rgb(193, 238, 255);
+  padding: 12px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .close-btn {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  .chat-message {
+    padding: 10px 14px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 80%;
+    width: fit-content;
+    word-wrap: break-word;
+    font-size: 14px;
+
+    &.user {
+      @extend .glassmorph;
+      background: rgba(81, 165, 255, 0.8);
+      color: white;
+      align-self: flex-end;
+    }
+
+    &.assistant {
+      @extend .glassmorph;
+      background: rgba(255, 255, 255, 0.6);
+      color: black;
+      align-self: flex-start;
+    }
+  }
+}
+
+.typing-animation {
+  animation: transparencyPulse 2s infinite;
+}
+.chat-footer {
+  display: flex;
+
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+
+  input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    color: black;
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.drawer {
+  margin-top: 20px;
+
+  .drawer-toggle {
+    @extend .glass-blue-btn;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .drawer-content {
+    @extend .glassmorph;
+    border-radius: 0 0 10px 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-top: none;
+
+    &.open {
+      max-height: 500px; // Adjust this value based on your content
+      padding: 10px;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+  }
+}
+
+.ai-vision {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+
+  label {
+    margin-right: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 0.5em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    // font-size: 0.8em;
+    i {
+      font-size: 1.5em;
+    }
+  }
+
+  label:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  input {
+    display: none;
+  }
+}
+
+//
+ 
+// Loader
+
+.loader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #22d6ff21;
+  @extend .glassmorph-nohover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  border-radius: 10px;
+
+  .loader-wrapper {
+    @extend .glassmorph-nohover;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 5em;
+ 
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+}
+.loader::before,
+.loader::after {    
+  content:"";
+  grid-area: 1/1;
+  --c:no-repeat radial-gradient(farthest-side,#22d6ff 92%,#0000);
+  background: 
+    var(--c) 50%  0, 
+    var(--c) 50%  100%, 
+    var(--c) 100% 50%, 
+    var(--c) 0    50%;
+  background-size: 12px 12px;
+  animation: l12 1s infinite;
+}
+.loader::before {
+  margin: 4px;
+  filter: hue-rotate(45deg);
+  background-size: 8px 8px;
+  animation-timing-function: linear
+}
+
+@keyframes l12 { 
+  100%{transform: rotate(.5turn)}
+}
+ /* HTML: <div class="loader"></div> */
+.loader {
+  width: 25%;
+  aspect-ratio: 1;
+  display: grid;
+}
+.loader::before,
+.loader::after {    
+  content:"";
+  grid-area: 1/1;
+  --c:no-repeat radial-gradient(farthest-side,#22d6ff 92%,#0000);
+  background: 
+    var(--c) 50%  0, 
+    var(--c) 50%  100%, 
+    var(--c) 100% 50%, 
+    var(--c) 0    50%;
+  background-size: 20px 20px;
+  animation: l12 2s infinite;
+}
+.loader::before {
+  margin: 4px;
+  filter: hue-rotate(45deg);
+  background-size: 16px 16px;
+  animation-timing-function: linear
+}
+
+@keyframes l12 { 
+  100%{transform: rotate(.5turn)}
+}
