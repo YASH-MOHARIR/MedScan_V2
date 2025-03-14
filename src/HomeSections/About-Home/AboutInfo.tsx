@@ -14,10 +14,10 @@ const AboutInfo: React.FC<{ data: PatientRecordType }> = ({ data }) => {
 
   useEffect(() => {
     if (messages.length === 1) {
-      // sendCustomPrompt(
-      //   "return a message stating about which patient you are viewing in 10 words." + JSON.stringify(data),
-      //   "Fetching Patient Data"
-      // );
+      sendCustomPrompt(
+        "return a message stating about which patient you are viewing in 10 words." + JSON.stringify(data),
+        "Fetching Patient Data"
+      );
     }
   }, [messages.length, data, sendCustomPrompt]); // ✅ Runs only when messages.length or data changes
 
