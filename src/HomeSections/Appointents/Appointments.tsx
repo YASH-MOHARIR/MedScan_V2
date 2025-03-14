@@ -26,7 +26,7 @@ export const Appointments = ({ appointmentData }: { appointmentData: Appointment
         <AddAppointment />
       </div>
 
-      <div className="appointments-wrapper">
+      <div className="appointments-wrapper mt-3">
         {appointmentData.map((appointment, index) => (
           <AppointmentCard key={index} appointmentData={appointment} />
         ))}

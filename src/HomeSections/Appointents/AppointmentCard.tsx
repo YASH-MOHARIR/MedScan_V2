@@ -4,7 +4,7 @@ import { PrescriptionCard } from "./PrescriptionCard";
 
 export const AppointmentCard = ({ appointmentData }: { appointmentData: AppointmentType }) => {
   return (
-    <div className="appointment-card glassmorph-nohover   mt-5">
+    <div className="appointment-card glassmorph-nohover mb-5">
       <div className="wrapper">
         <div className="date-time">
           <i className="icon fi fi-sr-calendar-clock"></i>

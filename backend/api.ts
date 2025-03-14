@@ -1,7 +1,7 @@
 import axios from "axios";
 import { PatientRecordType } from "../src/HomeSections/ProfileDataType";
 
-const API_URL="https://medscan-apis.azurewebsites.net/api/";
+const API_URL="https://medscan-apis.azurewebsites.net/api";
 const code ="5Xp37UEbAZD-WALxxfC5FFNOpcjshLwcZBMcX5VA-0EXAzFuZbPX8Q=="
 
 

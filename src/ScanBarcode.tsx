@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getPatientRecord } from "../backend/api";
 import { useCurrentPatientData } from "./store/PatientDataContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Loader from "./utils/Loader";
 
 export const ScanBarcode = () => {
@@ -9,6 +9,7 @@ export const ScanBarcode = () => {
   const navigateTo = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [showError, setShowError] = useState(false);
+  const idInput = useRef<HTMLInputElement>(null);
 
   // The same handleSubmit logic as before
   const handleSubmit = async (formData: FormData) => {
@@ -22,7 +23,7 @@ export const ScanBarcode = () => {
 
       await setPatientData(res);
       navigateTo(`/home/${res.pid}`);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response?.data === " Patient not found.") {
         setShowError(true);
@@ -41,9 +42,25 @@ export const ScanBarcode = () => {
     handleSubmit(formData);
   };
 
+  const tryoutBtn = () => {
+    if (idInput.current) {
+      console.log(idInput.current.value);
+      idInput.current.value = "P654321";
+      idInput.current.focus();
+    }
+  };
+
   return (
     <div className="scan-barcode">
       {/* Show loader if isLoading is true */}
+
+      <p className="login-logo">
+        Med<span>Scan</span>
+      </p>
+      <button onClick={tryoutBtn} className="sample-record glass-blue-btn p-3">
+        Click To View Sample Reccord : P654321
+      </button>
+
       {isLoading && <Loader title="Fetching Patient Data..." />}
 
       <div className="login-card glassmorph-nohover">
@@ -53,6 +70,7 @@ export const ScanBarcode = () => {
         {/* Use onSubmit instead of action */}
         <form className="scan-form glassmorph" onSubmit={onFormSubmit}>
           <input
+            ref={idInput}
             className="mx-2"
             type="text"
             name="patientID"
@@ -68,7 +86,7 @@ export const ScanBarcode = () => {
 
         <div className="scan-action-btns">
           <button className="glassmorph">
-            <i className="fi fi-br-camera-viewfinder icon"></i>
+            <i className="fi fi-br-camera-viewfinder icon glass-blue-btn"></i>
             <p className="mx-2">Scan Barcode</p>
           </button>
 

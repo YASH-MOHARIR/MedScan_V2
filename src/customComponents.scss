@@ -22,7 +22,17 @@
 }
 
 i {
-  line-height: 0 !important;
+  line-height: 0.5em;
+  vertical-align: -0.15em;
+  
+  display: inline-flex;
+}
+.fi{
+  line-height: 0.5em;
+  vertical-align: -0.15em;
+  
+  display: inline-flex;
+
 }
 section {
   min-height: 100vh;
@@ -327,6 +337,7 @@ textarea {
   to {
     opacity: 0;
     transform: scale(0.95);
+    display: none;
   }
 }
 
