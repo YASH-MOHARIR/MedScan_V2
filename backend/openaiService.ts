@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const OPENAI_API_KEY =  import.meta.env.VITE_OPEN_AI_API_KEY;  
-const openaiEndpoint = "https://medscan-open-ai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-10-21";
+const openaiEndpoint =  import.meta.env.VITE_OPEN_AI_API_ENDPOINT;
 
 export type chatMessageType =  { role: string, content: string };
 
