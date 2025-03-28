@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     env:
-      OPEN_AI_API_KEY: ${{ secrets.OPEN_AI_API_KEY }}
+       VITE_OPEN_AI_API_KEY: ${{ secrets.VITE_OPEN_AI_API_KEY }}
     steps:
       - uses: actions/checkout@v3
         with:
