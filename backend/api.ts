@@ -1,8 +1,8 @@
 import axios from "axios";
 import { PatientRecordType } from "../src/HomeSections/ProfileDataType";
 
-const API_URL="https://medscan-apis.azurewebsites.net/api";
-const code ="5Xp37UEbAZD-WALxxfC5FFNOpcjshLwcZBMcX5VA-0EXAzFuZbPX8Q=="
+const API_URL= import.meta.env.VITE_FUNCTION_URL;
+const code = import.meta.env.VITE_FUNCTION_CODE ;
 
 export const createPatientRecord = async (patientData: PatientRecordType) => {
   const response = await axios.post(`${API_URL}/createPatient?code=${code}`, patientData);
