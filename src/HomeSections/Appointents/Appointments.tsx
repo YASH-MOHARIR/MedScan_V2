@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import "./appointments.scss";
 import { useChatbot } from "../../store/ChatbotContext";
 import { AppointmentType } from "../ProfileDataType";
 import { AppointmentCard } from "./AppointmentCard";
