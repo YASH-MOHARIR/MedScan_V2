@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 import { useChatbot } from "../store/ChatbotContext";
 import AIVision from "./AIVision";
@@ -133,7 +133,11 @@ const Chatbot: React.FC = () => {
             </button>
           </div>
 
-          {visionOpen && <AIVision />}
+          {visionOpen && (
+            <Suspense fallback={<div className="chat-message bot typing-animation">Loading AI Vision...</div>}>
+              <AIVision />
+            </Suspense>
+          )}
         </div>
       )}
     </div>

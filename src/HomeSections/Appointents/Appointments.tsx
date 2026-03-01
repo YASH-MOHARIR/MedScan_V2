@@ -1,8 +1,12 @@
+import React, { Suspense } from "react";
+import "./appointments.scss";
 import { useChatbot } from "../../store/ChatbotContext";
-import PatientLineChart from "./PatientDataGraph";
 import { AppointmentType } from "../ProfileDataType";
 import { AppointmentCard } from "./AppointmentCard";
 import AddAppointment from "./AddAppointment";
+
+// Lazy load the heavy Chart.js component
+const PatientLineChart = React.lazy(() => import('./PatientDataGraph'));
 
 export const Appointments = ({ appointmentData }: { appointmentData: AppointmentType[] }) => {
   const { sendCustomPrompt } = useChatbot();
@@ -39,7 +43,9 @@ export const Appointments = ({ appointmentData }: { appointmentData: Appointment
             <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" aria-hidden="true" /> Analyze Vitals
           </button>
         </div>
-        <PatientLineChart appointmentsData={appointmentData} />
+        <Suspense fallback={<div className="glassmorph text-center p-5">Loading Chart Data...</div>}>
+          <PatientLineChart appointmentsData={appointmentData} />
+        </Suspense>
       </div>
     </>
   );
