@@ -13,73 +13,124 @@ const Chatbot: React.FC = () => {
   const toggleChat = () => setIsOpen(!isOpen);
 
   const handleSendMessage = () => {
-    if (!input.trim()) return; // Prevent sending empty messages
+    if (!input.trim()) return;
     sendMessage(input);
-    setInput(""); // Clear input after sending
+    setInput("");
   };
 
   const showAIVision = () => {
     setViionOpen(!visionOpen);
   };
 
-  const lastMessageRef = useRef<HTMLDivElement | null>(null); // Reference to last message
+  const lastMessageRef = useRef<HTMLDivElement | null>(null);
 
-  // **Auto-scroll directly to the last message**
+  // Auto-scroll to the last message
   useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [messages]);
 
+  // Close chat on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, setIsOpen]);
+
   return (
     <div>
-      {/* Chat Toggle Button */}
-      <div className="chat-toggle" onClick={toggleChat}>
-        <img src="/icons/chat-gpt-blue.png" alt="Chat Icon" />
-      </div>
+      {/* Chat Toggle Button — was <div>, now <button> for keyboard accessibility */}
+      <button
+        className="chat-toggle"
+        onClick={toggleChat}
+        aria-label={isOpen ? "Close chat assistant" : "Open chat assistant"}
+        aria-expanded={isOpen}
+      >
+        <img src="/icons/chat-gpt-blue.png" alt="" aria-hidden="true" />
+      </button>
 
       {/* Chat Window */}
       {isOpen && (
-        <div className={`chat-window ${iswindowExpanded ? "expand-window" : ""} `}>
+        <div
+          className={`chat-window ${iswindowExpanded ? "expand-window" : ""} `}
+          role="complementary"
+          aria-label="MedScan AI Chat Assistant"
+        >
           <div className="chat-header">
-            <span>Medscan AI Chatbot</span>
+            <span id="chatbot-title">MedScan AI Chatbot</span>
             <div className="actions">
-              <button onClick={toggleWindowSize} className="close-btn glass-blue-btn">
+              <button
+                onClick={toggleWindowSize}
+                className="close-btn glass-blue-btn"
+                aria-label={iswindowExpanded ? "Collapse chat window" : "Expand chat window"}
+              >
                 {iswindowExpanded ? (
-                  <i className="fi fi-br-compress-alt"></i>
+                  <i className="fi fi-br-compress-alt" aria-hidden="true"></i>
                 ) : (
-                  <i className="fi fi-br-arrow-up-right-and-arrow-down-left-from-center"></i>
+                  <i className="fi fi-br-arrow-up-right-and-arrow-down-left-from-center" aria-hidden="true"></i>
                 )}
               </button>
-              <button onClick={toggleChat} className="close-btn glass-red-btn mx-2">
+              <button
+                onClick={toggleChat}
+                className="close-btn glass-red-btn mx-2"
+                aria-label="Close chat window"
+              >
                 <p>Close</p>
               </button>
             </div>
           </div>
 
-          <div className="chat-body">
+          {/* aria-live="polite" — screen readers announce new messages */}
+          <div className="chat-body" role="log" aria-live="polite" aria-label="Chat messages">
             {messages.map((msg, index) => (
               <div
                 key={index}
-                ref={index === messages.length - 1 ? lastMessageRef : null} // Attach ref to last message
-                className={`chat-message ${msg.role}`}>
+                ref={index === messages.length - 1 ? lastMessageRef : null}
+                className={`chat-message ${msg.role}`}
+                role="article"
+                aria-label={msg.role === "user" ? "Your message" : "AI response"}
+              >
                 <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             ))}
-            {isLoading && <div className="chat-message bot typing-animation">Typing...</div>}
+            {isLoading && (
+              <div className="chat-message bot typing-animation" role="status" aria-label="AI is typing">
+                Typing...
+              </div>
+            )}
           </div>
 
           <div className="chat-footer">
+            <label htmlFor="chat-input" className="sr-only">
+              Type your message
+            </label>
             <input
+              id="chat-input"
               type="text"
               placeholder="Ask something..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()} // Fixed: Use onKeyDown
+              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
             />
-            <button onClick={handleSendMessage} className="icon glassmorph glass-blue-btn mx-2 send-btn">
-              <i className="fi fi-sr-paper-plane-top"></i>
+            <button
+              onClick={handleSendMessage}
+              className="icon glassmorph glass-blue-btn mx-2 send-btn"
+              aria-label="Send message"
+            >
+              <i className="fi fi-sr-paper-plane-top" aria-hidden="true"></i>
             </button>
-            <button onClick={showAIVision} className="icon glassmorph glass-blue-btn mx-2 send-btn">
-            <i className="fi fi-br-add-image"></i>            </button>
+            <button
+              onClick={showAIVision}
+              className="icon glassmorph glass-blue-btn mx-2 send-btn"
+              aria-label={visionOpen ? "Close image analysis" : "Open image analysis"}
+              aria-expanded={visionOpen}
+            >
+              <i className="fi fi-br-add-image" aria-hidden="true"></i>
+            </button>
           </div>
 
           {visionOpen && <AIVision />}

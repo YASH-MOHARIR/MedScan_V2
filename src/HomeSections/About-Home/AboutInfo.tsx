@@ -8,7 +8,7 @@ const AboutInfo: React.FC<{ data: PatientRecordType }> = ({ data }) => {
   const { sendCustomPrompt, messages } = useChatbot();
 
   const analyzeBasicInfo = async () => {
-    const response = sendCustomPrompt("Analyze Basic Info of this patient" , "Analyzing Basic Info");
+    const response = sendCustomPrompt("Analyze Basic Info of this patient", "Analyzing Basic Info");
     console.log(response);
   };
 
@@ -25,9 +25,9 @@ const AboutInfo: React.FC<{ data: PatientRecordType }> = ({ data }) => {
   return (
     <div className="about-main col-7">
       <div className="head d-flex  mb-3">
-        <h1>About</h1>
-        <button onClick={analyzeBasicInfo} className="analyze-btn mx-3">
-          <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" /> Analyze
+        <h2>About</h2>
+        <button onClick={analyzeBasicInfo} className="analyze-btn mx-3" aria-label="Analyze basic patient info with AI">
+          <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" aria-hidden="true" /> Analyze
         </button>
       </div>
 

@@ -4,23 +4,23 @@ import AddSpecimen from "./AddSpecimen";
 import { SpecimenCard } from "./SpecimenCard";
 
 const Specimens = ({ specimenData }: { specimenData: Specimen[] }) => {
-  
+
   const { sendCustomPrompt } = useChatbot();
 
 
   const analyzeSpecimenResults = async () => {
-    const response = sendCustomPrompt("Analyze the following specimens and thier results. summarise in brief . give suggestions and predictions on what can be wrong  "  + JSON.stringify(specimenData), "Analyzing Specimen Data and Tests");
+    const response = sendCustomPrompt("Analyze the following specimens and thier results. summarise in brief . give suggestions and predictions on what can be wrong  " + JSON.stringify(specimenData), "Analyzing Specimen Data and Tests");
     console.log(response);
   };
 
   return (
     <div>
       <div className="d-flex">
-        <h1>Specimens</h1>
-        <button onClick={analyzeSpecimenResults} className="analyze-btn mx-3">
-          <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" /> Analyze
+        <h2>Specimens</h2>
+        <button onClick={analyzeSpecimenResults} className="analyze-btn mx-3" aria-label="Analyze specimen data with AI">
+          <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" aria-hidden="true" /> Analyze
         </button>
-        <AddSpecimen/>
+        <AddSpecimen />
       </div>
 
 

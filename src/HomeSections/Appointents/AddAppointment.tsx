@@ -87,8 +87,8 @@ const AddAppointment: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="glass-green-btn d-flex" style={{lineHeight:'0', alignItems: "center"}}>
-        <i className="fi fi-br-add mx-2" ></i>
+      <button onClick={() => setIsOpen(true)} className="glass-green-btn d-flex" style={{ lineHeight: '0', alignItems: "center" }} aria-label="Add new appointment">
+        <i className="fi fi-br-add mx-2" aria-hidden="true"></i>
         Add Appointment
       </button>
 
@@ -196,7 +196,7 @@ const AddAppointment: React.FC = () => {
                 />
               </div>
               <input
-              className="my-2"
+                className="my-2"
                 type="text"
                 name="instructions"
                 placeholder="Instructions"

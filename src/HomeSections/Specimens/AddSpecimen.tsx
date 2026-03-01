@@ -18,7 +18,7 @@ const AddSpecimen: React.FC = () => {
     time: "",
     collectedBy: "",
     collectionMethod: "",
-    testResults:  {
+    testResults: {
       id: "",
       specimenId: "",
       testType: "",
@@ -93,12 +93,12 @@ const AddSpecimen: React.FC = () => {
       };
 
       // ✅ Optimistic UI Update
- setPatientData({
-      ...patientData,
-      specimens: [...patientData.specimens, newSpecimen],// Append new appointment
-    });
+      setPatientData({
+        ...patientData,
+        specimens: [...patientData.specimens, newSpecimen],// Append new appointment
+      });
 
-      const data : updateDataType = {
+      const data: updateDataType = {
         patientId: uid,
         updateType: "specimen",
         updateData: newSpecimen,
@@ -115,7 +115,7 @@ const AddSpecimen: React.FC = () => {
     } catch (error) {
       console.error("Error updating:", error);
 
- 
+
     }
 
     setIsOpen(false);
@@ -123,8 +123,8 @@ const AddSpecimen: React.FC = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="glass-green-btn" style={{lineHeight:'0', alignItems: "center"}}>
-      <i className="fi fi-br-add mx-2" ></i>
+      <button onClick={() => setIsOpen(true)} className="glass-green-btn" style={{ lineHeight: '0', alignItems: "center" }} aria-label="Add new specimen">
+        <i className="fi fi-br-add mx-2" aria-hidden="true"></i>
 
         Add Specimen
       </button>

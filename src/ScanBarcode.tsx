@@ -11,7 +11,6 @@ export const ScanBarcode = () => {
   const [showError, setShowError] = useState(false);
   const idInput = useRef<HTMLInputElement>(null);
 
-  // The same handleSubmit logic as before
   const handleSubmit = async (formData: FormData) => {
     setIsLoading(true);
     try {
@@ -34,8 +33,6 @@ export const ScanBarcode = () => {
     setIsLoading(false);
   };
 
-  // This function is called by the form's onSubmit
-  // It prevents the default page reload and constructs FormData
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -51,53 +48,62 @@ export const ScanBarcode = () => {
   };
 
   return (
-    <div className="scan-barcode">
+    <main className="scan-barcode">
       {/* Show loader if isLoading is true */}
 
-      <p className="login-logo">
+      <p className="login-logo" aria-hidden="true">
         Med<span>Scan</span>
       </p>
       <button onClick={tryoutBtn} className="sample-record glass-blue-btn p-3">
-        Click To View Sample Reccord : P654321
+        Click To View Sample Record : P654321
       </button>
 
       {isLoading && <Loader title="Fetching Patient Data..." />}
 
       <div className="login-card glassmorph-nohover">
-        <i className="fi fi-rs-barcode-read barcode-icon"></i>
+        <i className="fi fi-rs-barcode-read barcode-icon" aria-hidden="true"></i>
         <h1>Scan Barcode</h1>
 
-        {/* Use onSubmit instead of action */}
-        <form className="scan-form glassmorph" onSubmit={onFormSubmit}>
+        <form className="scan-form glassmorph" onSubmit={onFormSubmit} aria-label="Patient lookup form">
+          <label htmlFor="patientID" className="sr-only">
+            Patient ID
+          </label>
           <input
             ref={idInput}
             className="mx-2"
             type="text"
+            id="patientID"
             name="patientID"
             placeholder="Enter barcode"
             required
+            aria-describedby={showError ? "patient-error" : undefined}
           />
           <button type="submit" className="glassmorph glass-green-btn">
             Submit
           </button>
         </form>
 
-        {showError && <div className="glass-red-btn">Patient not found</div>}
+        {/* Error with role="alert" so screen readers announce it immediately */}
+        {showError && (
+          <div className="glass-red-btn" role="alert" id="patient-error">
+            Patient not found
+          </div>
+        )}
 
         <div className="scan-action-btns">
-          <button className="glassmorph">
-            <i className="fi fi-br-camera-viewfinder icon glass-blue-btn"></i>
+          <button className="glassmorph" aria-label="Scan barcode with camera">
+            <i className="fi fi-br-camera-viewfinder icon glass-blue-btn" aria-hidden="true"></i>
             <p className="mx-2">Scan Barcode</p>
           </button>
 
           <Link className="new-profile-btn" to="/new-profile">
-            <button className="glassmorph">
-              <i className="fi fi-br-add icon glass-green-btn ml-3"></i>
+            <button className="glassmorph" aria-label="Create new patient profile">
+              <i className="fi fi-br-add icon glass-green-btn ml-3" aria-hidden="true"></i>
               <p className="mx-2">New Profile</p>
             </button>
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 };

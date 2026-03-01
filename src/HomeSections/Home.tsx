@@ -12,7 +12,7 @@ const Home = () => {
 
   const { name, pid, gender, age } = patientData;
   return (
-    <main data-spy="scroll" data-target="#navigation" data-offset="0">
+    <main data-spy="scroll" data-target="#navigation" data-offset="0" aria-label="Patient dashboard">
       <Header name={name} pid={pid} gender={gender} age={age} />
       <Chatbot />
 

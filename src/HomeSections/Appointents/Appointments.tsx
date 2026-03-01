@@ -10,7 +10,7 @@ export const Appointments = ({ appointmentData }: { appointmentData: Appointment
   const analyzeAppointments = async () => {
     const response = sendCustomPrompt(
       "Analyze the patient appointments Info and vital data of this patient in 100 words, give suggestions on trends and give predictions in short" +
-        JSON.stringify(appointmentData),
+      JSON.stringify(appointmentData),
       "Analyzing Past Appointments and Vitals... "
     );
     console.log(response);
@@ -19,9 +19,9 @@ export const Appointments = ({ appointmentData }: { appointmentData: Appointment
   return (
     <>
       <div className="d-flex  ">
-        <h1>Appointments</h1>
-        <button onClick={analyzeAppointments} className="analyze-btn mx-3">
-          <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" /> Analyze
+        <h2>Appointments</h2>
+        <button onClick={analyzeAppointments} className="analyze-btn mx-3" aria-label="Analyze appointment history with AI">
+          <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" aria-hidden="true" /> Analyze
         </button>
         <AddAppointment />
       </div>
@@ -31,12 +31,12 @@ export const Appointments = ({ appointmentData }: { appointmentData: Appointment
           <AppointmentCard key={index} appointmentData={appointment} />
         ))}
       </div>
-      
+
       <div className="my-5">
         <div className="d-flex align-items-center my-3 ">
-          <h4>Vitals Chart</h4>
-          <button onClick={analyzeAppointments} className="analyze-btn mx-3">
-            <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" /> Analyze Vitals
+          <h3>Vitals Chart</h3>
+          <button onClick={analyzeAppointments} className="analyze-btn mx-3" aria-label="Analyze vitals data with AI">
+            <img className="analyze-icon" src="/icons/chat-gpt-analyze.png" alt="" aria-hidden="true" /> Analyze Vitals
           </button>
         </div>
         <PatientLineChart appointmentsData={appointmentData} />

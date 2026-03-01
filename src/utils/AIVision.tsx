@@ -4,7 +4,7 @@ import { useChatbot } from "../store/ChatbotContext";
 
 const AIVision: React.FC = () => {
 
-  const [fileName, setfileName] = useState<string|null>(null);
+  const [fileName, setfileName] = useState<string | null>(null);
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -48,7 +48,7 @@ const AIVision: React.FC = () => {
       setMessages([
         ...messages,
         {
-          content: `According to my analysis,\n Prediction: **${prediction.tagName}** \n with a probability of **${(prediction.probability*100).toFixed(3)} %**`,
+          content: `According to my analysis,\n Prediction: **${prediction.tagName}** \n with a probability of **${(prediction.probability * 100).toFixed(3)} %**`,
           role: "assistant",
         },
       ]);
@@ -61,14 +61,14 @@ const AIVision: React.FC = () => {
   };
 
   return (
-    <div className="ai-vision row container p-3 g-2">
+    <div className="ai-vision row container p-3 g-2" role="group" aria-label="Brain MRI image analysis">
       <label className="col mr-2" htmlFor="image-upload">
-        {selectedFile ?  <div>{fileName}</div> : <div>Upload Brain MRI for Tumor Prediction</div>}
-        <i className="fi fi-rr-file-upload mx-3"></i>
+        {selectedFile ? <div>{fileName}</div> : <div>Upload Brain MRI for Tumor Prediction</div>}
+        <i className="fi fi-rr-file-upload mx-3" aria-hidden="true"></i>
       </label>
 
-      <input className="col-0" type="file" accept="image/*" id="image-upload" onChange={handleFileChange} />
-      <button className="glass-purple-btn col-4" onClick={handleSubmit} disabled={selectedFile == null}>
+      <input className="col-0" type="file" accept="image/*" id="image-upload" onChange={handleFileChange} aria-label="Upload brain MRI image" />
+      <button className="glass-purple-btn col-4" onClick={handleSubmit} disabled={selectedFile == null} aria-label="Analyze uploaded MRI image">
         Analyze Image
       </button>
     </div>

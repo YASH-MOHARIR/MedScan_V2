@@ -10,7 +10,7 @@ export const SpecimenCard = ({ specimenDetails }: { specimenDetails: Specimen })
     <div className={`specimen-card glassmorph col-3   `}>
       <div className="row">
         <div className="specimen-icon icon col-3">
-          <i className="fi fi-ss-blood-test-tube-alt   m-auto"></i>
+          <i className="fi fi-ss-blood-test-tube-alt   m-auto" aria-hidden="true"></i>
         </div>
         <div className="details col row">
           <p>
@@ -19,7 +19,7 @@ export const SpecimenCard = ({ specimenDetails }: { specimenDetails: Specimen })
           <p>Date : {specimenDetails.date}</p>
           <p>Time : {specimenDetails.time}</p>
 
-          <button onClick={() => setIsModalOpen((prev) => !prev)} className="glassmorph glass-blue-btn mt-2  p-2">
+          <button onClick={() => setIsModalOpen((prev) => !prev)} className="glassmorph glass-blue-btn mt-2  p-2" aria-label={`View test results for ${specimenDetails.specimenType} specimen`}>
             Test Results
           </button>
 

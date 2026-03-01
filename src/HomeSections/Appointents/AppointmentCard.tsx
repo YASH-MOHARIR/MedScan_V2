@@ -7,7 +7,7 @@ export const AppointmentCard = ({ appointmentData }: { appointmentData: Appointm
     <div className="appointment-card glassmorph-nohover mb-5">
       <div className="wrapper">
         <div className="date-time">
-          <i className="icon fi fi-sr-calendar-clock"></i>
+          <i className="icon fi fi-sr-calendar-clock" aria-hidden="true"></i>
           <p>
             {appointmentData.date} • {appointmentData.time}
           </p>
@@ -22,15 +22,15 @@ export const AppointmentCard = ({ appointmentData }: { appointmentData: Appointm
           <div className="w-100">
             <div className="vitals mt-3">
               <div className="vital glassmorph">
-                <i className="fi fi-sr-heart heart-icon icon"></i>
+                <i className="fi fi-sr-heart heart-icon icon" aria-hidden="true"></i>
                 <p>HR : {appointmentData.vitals.heartRate} bpm</p>
               </div>
               <div className="vital glassmorph">
-                <i className="fi fi-rr-thermometer-half thermometer-icon icon"></i>{" "}
+                <i className="fi fi-rr-thermometer-half thermometer-icon icon" aria-hidden="true"></i>{" "}
                 <p>Temperature: {appointmentData.vitals.temperature} F</p>
               </div>
               <div className="vital glassmorph">
-                <i className="icon fi fi-br-heart-rate"></i>
+                <i className="icon fi fi-br-heart-rate" aria-hidden="true"></i>
                 <p>BP: {appointmentData.vitals.bloodPressure} mmHg</p>
               </div>
             </div>
